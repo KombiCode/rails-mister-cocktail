@@ -1,6 +1,20 @@
-<div class="container">
-  <%= link_to "Add cocktail", new_cocktail_path %>
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <% @cocktails.each do |cocktail| %>
-    <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
+    <% ig_a = [] %>
+    <% cocktail.doses.each do |dose| %>
+      <% ig_a << dose.ingredient.name %>
+    <% end %>
+    <div class="col">
+      <div class="card h-100">
+        <%= image_tag "cocktails.jpg" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
+          <p class="card-text"><%= ig_a.join(',') %></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
