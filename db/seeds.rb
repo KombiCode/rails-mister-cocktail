@@ -13,9 +13,9 @@ ingredients_serialized = open(url).read
 ingredients = JSON.parse(ingredients_serialized)
 
 puts 'Cleaning DB'
-Ingredient.destroy_all
-Dose.destroy_all
 Cocktail.destroy_all
+Dose.destroy_all
+Ingredient.destroy_all
 
 ingredients['drinks'].each do |ingredient|
   Ingredient.create(name: ingredient['strIngredient1'])

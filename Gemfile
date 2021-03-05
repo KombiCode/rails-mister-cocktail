@@ -49,3 +49,5 @@ gem 'rails-controller-testing', group: [ :test ]
 gem 'rspec-rails', group: [ :test ]
 gem 'simple_form'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'dotenv-rails', groups: [:development, :test]
