@@ -6,7 +6,11 @@
     <% end %>
     <div class="col">
       <div class="card h-100">
-        <%= image_tag "cocktails.jpg" %>
+        <% if cocktail.photo.attached? %>
+          <%= cl_image_tag cocktail.photo.key, crop: :fill %>
+        <% else %>
+          <%= cl_image_tag("https://res.cloudinary.com/dnobflpja/image/upload/v1614944038/lxq87kuedu30bvsoo0mt.jpg") %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= link_to cocktail.name, cocktail_path(cocktail) %></h5>
           <p class="card-text"><%= ig_a.join(',') %></p>
