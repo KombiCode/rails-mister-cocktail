@@ -1,16 +1,14 @@
-<div class="container">
-  <div class="card" style="width: 18rem;">
-    <% if @cocktail.photo.attached? %>
-      <%= cl_image_tag @cocktail.photo.key, crop: :fill %>
-    <% else %>
-      <%= cl_image_tag("https://res.cloudinary.com/dnobflpja/image/upload/v1614944038/lxq87kuedu30bvsoo0mt.jpg") %>
+<div class="card cocktail-details-card">
+  <% if @cocktail.photo.attached? %>
+    <%= cl_image_tag @cocktail.photo.key, width: 400, height: 300, crop: :fill %>
+  <% else %>
+    <%= cl_image_tag "https://res.cloudinary.com/dnobflpja/image/upload/v1614944038/lxq87kuedu30bvsoo0mt.jpg", width: 400, height: 300, crop: :fill %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title">The recipe for <%= @cocktail.name %></h5>
+    <% @cocktail.doses.each do |dose| %>
+      <p class="card-text"> <%= dose.description %> <%= dose.ingredient.name %> <%= link_to '-', dose_path(dose), method: :delete, data: { confirm: 'Sure ?'}, class: 'remove-link' %> </p>
     <% end %>
-    <div class="card-body">
-      <h5 class="card-title">The recipe for <%= @cocktail.name %></h5>
-      <% @cocktail.doses.each do |dose| %>
-        <p class="card-text"> <%= dose.description %> <%= dose.ingredient.name %> <%= link_to '-', dose_path(dose), method: :delete, data: { confirm: 'Sure ?'}, class: 'remove-link' %> </p>
-      <% end %>
-      <%= link_to "Add dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary"  %>
-    </div>
   </div>
+  <%= render "doses/form", cocktail: @cocktail, dose: @dose %>
 </div>

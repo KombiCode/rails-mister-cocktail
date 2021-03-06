@@ -1,17 +1,13 @@
 class DosesController < ApplicationController
   before_action :find_cocktail, only: %i[new create]
 
-  def new
-    @dose = Dose.new
-  end
-
   def create
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
     if @dose.save
       redirect_to cocktail_path(@cocktail)
     else
-      render :new
+      render 'cocktails/show'
     end
   end
 

@@ -1,12 +1,8 @@
 <%= simple_form_for [ @cocktail, @dose ] do |f| %>
-  <div class="row mb-3 form-group">
+  <div class="form-group">
     <%= f.input :description, class: 'form-control' %>
-  </div>
-  <div class="row mb-3 form-group">
-    <%= f.association :ingredient, collection: Ingredient.all, prompt: "Choose an ingredient", class: 'form-control' %>
-  </div>
-  <div>
-    <%= f.submit class: 'row mb-3 btn btn-primary' %>
+    <%= f.association :ingredient, collection: Ingredient.all, prompt: "Choose an ingredient", class: 'form-control beautiful-dropdown', include_hidden: false %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
   <hr>
   <div>
